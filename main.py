@@ -25,7 +25,7 @@ def home() -> str:
 </html>
 """.format(__version__)
 
-@app.get('/summarizer')
+@app.post('/summarizer')
 def home(article : str, summery_length : Optional[int] = 75): 
     summary = summarizer.predict(article, summary_length=summery_length)
     return Response(content=summary, media_type="txt")

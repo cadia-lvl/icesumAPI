@@ -42,7 +42,7 @@ næstu vikum og mánuðum. Þeir hafi þurft að reiða sig á bráðabirgðalau
 Upptökukerfi í dómsal taki upp það sem fer fram á fjarfundinum.
 """
 
-r = requests.get("http://0.0.0.0:8080/summarizer", params={'article':article})
+r = requests.post("http://0.0.0.0:8080/summarizer", params={'article':article})
 exp = 'Ákærendafélag Íslands segir að dómstólar séu of illa búnir til að geta nýtt sér bráðabirgðaheimild til málsmeðferða í gegnum fjarfundarbúnað. Umsýsla dómstóla segir að tæknilausnir séu til staðar en að unnið sé að úrbótum. Í vor var sett í lög bráðabirgðaákvæði þess efnis að heimilt sé að skýrslutaka og önnur málsmeðferð fari fram í gegnum fjarfundarbúnað. Í umsögn Ákærendafélags Íslands kemur fram að dómstólar hafi ekki nýtt sér þessa heimild eins og kostur er bestur í ljósi þess tækjabúnaður sé ekki fullnægjandi.'
 print(r.text)
 assert r.text==exp
