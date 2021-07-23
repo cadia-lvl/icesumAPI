@@ -1,5 +1,5 @@
-# Description
-This is an API for [icesum](https://github.com/cadia-lvl/icesum) using the [elg specification](https://european-language-grid.readthedocs.io/en/stable/all/A3_API/LTInternalAPI.html#basic-api-pattern). 
+# icesum API
+This is an API for [icesum](https://github.com/cadia-lvl/icesum) using the [ELG specification](https://european-language-grid.readthedocs.io/en/stable/all/A3_API/LTInternalAPI.html#basic-api-pattern).
 The API is wrapped in a [docker container](https://www.docker.com/) and is implemented using [fastapi](https://github.com/tiangolo/fastapi).
 
 # Getting started
@@ -13,3 +13,11 @@ Further details about the api calls are automatically generated when the contain
 | ----------- | --------------- |
 | /summarizer | Takes in an article in icelandic and then returns the article summary |
 | /summarizer/impl | Same as summarizer but for testing purposes |
+
+# Author
+
+[Reykjavik University](https://lvl.ru.is)
+
+Jökull Snær Gylfason
+
+# Acknowledgements
