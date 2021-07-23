@@ -10,7 +10,7 @@ import sys
 sys.path.insert(0, "/usr/src/app/icesum")
 from icesum import Summarizer
 
-class SummerizerInput(BaseModel):
+class SummarizerInput(BaseModel):
     type: Optional[str] = "text"
     content: str
     features: Optional[dict] = {"summary_length": 75}
@@ -38,11 +38,11 @@ def home() -> str:
 """.format(__version__)
 
 @app.post('/summarizer')
-def summeriser(request: SummerizerInput):
-    return summerizer_impl(request.content, request.features["summary_length"])
+def summariser(request: SummarizerInput):
+    return summarizer_impl(request.content, request.features["summary_length"])
 
 @app.post('/summarizer/impl')
-def summerizer_impl(article : str, summary_length : Optional[int] = 75): 
+def summarizer_impl(article : str, summary_length : Optional[int] = 75): 
     try:
         summary = summarizer.predict(article, summary_length=summary_length)
     except RuntimeError:

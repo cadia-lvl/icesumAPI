@@ -12,4 +12,4 @@ Further details about the api calls are automatically generated when the contain
 | HTTP METHOD | Description |
 | ----------- | --------------- |
 | /summarizer | Takes in an article in icelandic and then returns the article summary |
-| /summerizer/impl | Same as summarizer but for testing purposes |
+| /summarizer/impl | Same as summarizer but for testing purposes |

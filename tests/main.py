@@ -1,8 +1,8 @@
 import json
 import requests
 
-def summerizer(article, summery_length= 75):
-    r = requests.post("http://0.0.0.0:8080/summarizer/impl", params={'article':article, 'summery_length':summery_length})
+def summarizer(article, summary_length= 75):
+    r = requests.post("http://0.0.0.0:8080/summarizer/impl", params={'article':article, 'summary_length':summary_length})
     return r.text
 
 f = open('icesum.json')
@@ -21,5 +21,5 @@ for i,d in enumerate(data):
     print(padding+'TEXT'+padding)
     print(data[d]['text'])
     print(padding+'OUTPUT'+padding)
-    print(summerizer(data[d]['text']))
+    print(summarizer(data[d]['text']))
     input()
