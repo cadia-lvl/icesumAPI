@@ -10,10 +10,13 @@ import sys
 sys.path.insert(0, "/usr/src/app/icesum")
 from icesum import Summarizer
 
+class SummarizerParams(BaseModel):
+    summary_length: int = 75
+
 class SummarizerInput(BaseModel):
     type: Optional[str] = "text"
     content: str
-    features: Optional[dict] = {"summary_length": 75}
+    params: SummarizerParams = SummarizerParams()
 
 
 summarizer = Summarizer('icesum/models/mbl-cnn-s2s.pth')
@@ -24,6 +27,8 @@ app = FastAPI(
     title="icesum",
     description="Sumerizes icelandic articles"
 )
+
+
 
 @app.get('/', response_class=HTMLResponse)
 def home() -> str:
@@ -39,7 +44,7 @@ def home() -> str:
 
 @app.post('/summarizer')
 def summariser(request: SummarizerInput):
-    return summarizer_impl(request.content, request.features["summary_length"])
+    return summarizer_impl(request.content, request.params.summary_length)
 
 @app.post('/summarizer/impl')
 def summarizer_impl(article : str, summary_length : Optional[int] = 75): 
@@ -47,23 +52,24 @@ def summarizer_impl(article : str, summary_length : Optional[int] = 75):
         summary = summarizer.predict(article, summary_length=summary_length)
     except RuntimeError:
         if len(article) < 15:
-            response = { 
-                "code": "elg.summarizer.low.article",
+            err={"code": "icesum.summarizer.low.article",
                 "text": "The article length must be at least 15 characters long ",
-                "params": ["message", "summary"],
                 "detail":{'traceback':traceback.format_exc()}
             }
         else: 
-            response = { 
-                "code": "elg.summarizer.low.summary",
-                "text": "The summary length "+str(summary_length)+" is too small for the article length " +str(len(article)),
-                "params": ["message", "summary"],
+            err = { 
+                "code": "icesum.summarizer.failed",
+                "text": "The summarizer returned an error" ,
                 "detail":{'traceback':traceback.format_exc()}
             }
-        print(response)
+        response = {
+            "failure":{
+                "errors":[err]
+                }
+            }
         return JSONResponse(content=response)
     response = {"response":{
                 "type":"texts",
-                "content":summary
+                "texts":[{"content":summary}] 
         }} 
     return JSONResponse(content=response)

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import requests
+import json
 
+
+LOC="/process/service"
+#LOC="/summarizer"
 
 #source: https://www.ruv.is/frett/2020/10/30/domstolar-nyta-ekki-fjarfundarbunad-sem-skyldi
 article = """
@@ -42,7 +46,23 @@ næstu vikum og mánuðum. Þeir hafi þurft að reiða sig á bráðabirgðalau
 Upptökukerfi í dómsal taki upp það sem fer fram á fjarfundinum.
 """
 
-r = requests.post("http://0.0.0.0:8080/summarizer/impl", params={'article':article})
+r = requests.post("http://0.0.0.0:8080"+LOC, json={"type":"text",'content':article,'params':{'summary_length':75}})
 exp = 'Ákærendafélag Íslands segir að dómstólar séu of illa búnir til að geta nýtt sér bráðabirgðaheimild til málsmeðferða í gegnum fjarfundarbúnað. Umsýsla dómstóla segir að tæknilausnir séu til staðar en að unnið sé að úrbótum. Í vor var sett í lög bráðabirgðaákvæði þess efnis að heimilt sé að skýrslutaka og önnur málsmeðferð fari fram í gegnum fjarfundarbúnað. Í umsögn Ákærendafélags Íslands kemur fram að dómstólar hafi ekki nýtt sér þessa heimild eins og kostur er bestur í ljósi þess tækjabúnaður sé ekki fullnægjandi.'
 print(r.text)
+json.loads(r.text)
+assert '{"response":{"type":"texts","content":'+exp+'}}'
+
+print()
+
+
+r = requests.post("http://0.0.0.0:8080"+LOC, json={"type":"text",'content':'test','params':{'summary_length':10}})
+print(r.text)
+json.loads(r.text)
+assert '{"response":{"type":"texts","content":'+exp+'}}'
+
+print()
+
+r = requests.post("http://0.0.0.0:8080"+LOC, json={"type":"text",'content':'a'*100,'params':{'summary_length':20}})
+print(r.text)
+json.loads(r.text)
 assert '{"response":{"type":"texts","content":'+exp+'}}'

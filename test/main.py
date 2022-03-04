@@ -1,6 +1,10 @@
 import json
 import requests
 
+
+#LOC=/process/service
+LOC=/summarizer
+
 def summarizer(article, summary_length= 75):
     r = requests.post("http://0.0.0.0:8080/summarizer/impl", params={'article':article, 'summary_length':summary_length})
     return r.text
