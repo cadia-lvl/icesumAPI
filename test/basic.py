@@ -3,8 +3,8 @@ import requests
 import json
 
 
-LOC="/process/service"
-#LOC="/summarizer"
+#LOC="/process/service"
+LOC="/summarizer"
 
 #source: https://www.ruv.is/frett/2020/10/30/domstolar-nyta-ekki-fjarfundarbunad-sem-skyldi
 article = """
