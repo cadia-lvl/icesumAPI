@@ -51,18 +51,3 @@ exp = 'Ákærendafélag Íslands segir að dómstólar séu of illa búnir til a
 print(r.text)
 json.loads(r.text)
 assert '{"response":{"type":"texts","content":'+exp+'}}'
-
-print()
-
-
-r = requests.post("http://0.0.0.0:8080"+LOC, json={"type":"text",'content':'test','params':{'summary_length':10}})
-print(r.text)
-json.loads(r.text)
-assert '{"response":{"type":"texts","content":'+exp+'}}'
-
-print()
-
-r = requests.post("http://0.0.0.0:8080"+LOC, json={"type":"text",'content':'a'*100,'params':{'summary_length':20}})
-print(r.text)
-json.loads(r.text)
-assert '{"response":{"type":"texts","content":'+exp+'}}'

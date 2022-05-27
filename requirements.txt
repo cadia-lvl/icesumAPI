@@ -2,3 +2,7 @@ cython
 numpy
 fastapi
 uvicorn
+
+pandas==1.3.5
+pytorch-ignite==0.3.0
+tokenizer
