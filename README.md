@@ -16,6 +16,12 @@ Further details about the api calls are automatically generated when the contain
 | ----------- | --------------- |
 | /summarizer | Takes in an article in icelandic and then returns the article summary |
 
+
+# Testing
+test files can be found in `test/`. There are two tests that can be performed.
+1. Normal api tests: this is where you test the api from the running docker image
+2. ELG api tests: this is where you run `docker-compose up` and get an instance as if you where running the docker image on ELG. To submit a api call you then need to send a post request to `/process/service`.
+
 # Acknowledgements
 
 [Reykjavik University](https://lvl.ru.is)
