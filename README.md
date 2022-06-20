@@ -27,3 +27,6 @@ test files can be found in `test/`. There are two tests that can be performed.
 [Reykjavik University](https://lvl.ru.is)
 
 This ELG API was developed in EU's CEF project: [Microservices at your service](https://www.lingsoft.fi/en/microservices-at-your-service-bridging-gap-between-nlp-research-and-industry)
+
+# Underlying tool
+The underlying summerizer is [IceSum](https://github.com/cadia-lvl/icesum) by [Jón Friðrik Daðason](https://github.com/jonfd), [Hrafn Loftsson](https://www.ru.is/kennarar/hrafn/), Salome Lilja Sigurðardóttir and Þorsteinn Björnsson, which is licensed under this [Apache License 2.0](https://github.com/cadia-lvl/icesum/blob/main/LICENSE). [IceSum](https://github.com/jonfd/icesum.git) and [nnsum](https://github.com/kedz/nnsum.git) are cloned when the icesumAPI docker image is built.
